@@ -243,6 +243,15 @@ button{
 
 @keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* طباعة */
+@media print{
+  body{background:white;color:black;}
+  .header, .top-bar, .days-nav, .reset-btn, .print-btn{display:none;}
+  .schedule-panel{display:block !important;}
+  .slot{border:1px solid black;}
+  .slot-dot{display:none;}
+}
 </style>
 </head>
 <body>
@@ -265,7 +274,7 @@ button{
       </div>
     </div>
     <button class="reset-btn" onclick="resetDay()">🔄 إعادة</button>
-    <button class="print-btn" onclick="window.print()">🖨️ طباعة</button>
+    <button class="print-btn" onclick="printDay()">🖨️ طباعة</button>
   </div>
 
   <div class="days-nav">
@@ -322,6 +331,11 @@ function updateProgress(){
   let percent = total? (done/total*100):0;
   document.getElementById('progress-bar').style.width = percent+'%';
 }
+
+function printDay(){
+  window.print();
+}
+
 updateProgress();
 </script>
 
