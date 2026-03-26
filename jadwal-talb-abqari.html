@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جدول الطالب العبقري</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface2: #334155;
+  --border: #475569;
+  --gold: #facc15;
+  --blue: #3b82f6;
+  --green: #10b981;
+  --pink: #ec4899;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Cairo',sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+  padding:20px;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(250,204,21,0.2) 0%, transparent 80%),
+    radial-gradient(circle at 80% 80%, rgba(59,130,246,0.15) 0%, transparent 80%);
+  pointer-events:none;
+  z-index:0;
+}
+
+.wrapper{
+  position:relative;
+  z-index:1;
+  max-width:1200px;
+  margin:auto;
+  padding:10px;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:30px;
+  animation:fadeDown 0.8s ease both;
+}
+
+.header h1{
+  font-size: clamp(2rem,5vw,3rem);
+  font-weight:900;
+  background: linear-gradient(135deg,var(--gold),#fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p{
+  color: var(--muted);
+  font-family: 'Tajawal',sans-serif;
+}
+
+.top-bar{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.progress-area{
+  flex:1;
+  min-width:200px;
+}
+
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.progress-bar-wrap{
+  background: var(--surface2);
+  height:10px;
+  border-radius:50px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+.progress-bar-fill{
+  height:100%;
+  width:0%;
+  background: linear-gradient(90deg,var(--green),var(--blue));
+  border-radius:50px;
+  transition: width 0.5s ease;
+}
+
+button{
+  cursor:pointer;
+  border:none;
+  font-family:'Cairo',sans-serif;
+}
+
+.reset-btn{
+  background:transparent;
+  border:1px solid var(--border);
+  color: var(--muted);
+  padding:10px 16px;
+  border-radius:12px;
+  transition:0.2s;
+}
+
+.reset-btn:hover{
+  border-color:#f87171;
+  color:#f87171;
+}
+
+.print-btn{
+  background: linear-gradient(135deg,var(--gold),#f59e0b);
+  color:#0f172a;
+  padding:10px 22px;
+  border-radius:12px;
+  font-weight:700;
+  transition:0.2s;
+}
+
+.print-btn:hover{
+  transform:translateY(-2px);
+}
+
+.days-nav{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
+
+.day-btn{
+  background: var(--surface);
+  border:1px solid var(--border);
+  color: var(--muted);
+  padding:8px 16px;
+  border-radius:12px;
+  font-weight:600;
+  transition:0.25s;
+}
+
+.day-btn.active{
+  border-color: var(--gold);
+  color:#0f172a;
+  font-weight:700;
+  background: linear-gradient(135deg,var(--gold),#fbbf24);
+}
+
+.schedule-panel{
+  display:none;
+  animation:fadeIn 0.4s ease both;
+}
+
+.schedule-panel.visible{
+  display:block;
+}
+
+.day-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+  padding:14px 20px;
+  background: var(--surface);
+  border-radius:12px;
+  border:1px solid var(--border);
+}
+
+.slots{
+  display:grid;
+  gap:10px;
+}
+
+.slot{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  align-items:center;
+  gap:10px;
+  padding:12px 18px;
+  background: var(--surface2);
+  border-radius:12px;
+  border:1px solid var(--border);
+  transition:0.25s;
+  position:relative;
+}
+
+.slot:hover{
+  transform:translateX(-2px);
+  border-color: var(--gold);
+}
+
+.slot-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+}
+
+.study .slot-dot{background: var(--blue);}
+.prayer .slot-dot{background: var(--green);}
+.break .slot-dot{background: var(--pink);}
+
+.slot-label{
+  font-weight:600;
+}
+
+.check-btn{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:2px solid var(--border);
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  color:transparent;
+  transition:0.25s;
+}
+
+.check-btn.checked{
+  background: linear-gradient(135deg,var(--green),var(--blue));
+  border-color:var(--green);
+  color:white;
+  box-shadow:0 0 12px rgba(16,185,129,0.5);
+}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="header">
+    <h1>جدول الطالب العبقري</h1>
+    <p>منظم أسبوعي بلمسة عبقرية!</p>
+  </div>
+
+  <div class="top-bar">
+    <div class="progress-area">
+      <div class="progress-label">
+        <span>إنجاز اليوم</span>
+        <strong id="progress-text">0 / 0 مهمة</strong>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetDay()">🔄 إعادة</button>
+    <button class="print-btn" onclick="window.print()">🖨️ طباعة</button>
+  </div>
+
+  <div class="days-nav">
+    <button class="day-btn active" onclick="showDay('sun')" id="btn-sun">الأحد</button>
+    <button class="day-btn" onclick="showDay('mon')" id="btn-mon">الاثنين</button>
+  </div>
+
+  <!-- يوم الأحد -->
+  <div class="schedule-panel visible" id="panel-sun" data-day="sun">
+    <div class="day-header"><div class="day-emoji">🌅</div><div><h2>الأحد</h2></div></div>
+    <div class="slots">
+      <div class="slot study"><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">رياضيات</div></div><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
+      <div class="slot prayer"><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الفجر</div></div><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
+      <div class="slot break"><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">استراحة</div></div><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
+    </div>
+  </div>
+
+  <!-- يوم الاثنين -->
+  <div class="schedule-panel" id="panel-mon" data-day="mon">
+    <div class="day-header"><div class="day-emoji">🌞</div><div><h2>الاثنين</h2></div></div>
+    <div class="slots">
+      <div class="slot study"><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">فيزياء</div></div><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
+      <div class="slot prayer"><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الظهر</div></div><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
+      <div class="slot break"><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">غداء</div></div><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showDay(day){
+  document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('#btn-'+day).classList.add('active');
+  document.querySelectorAll('.schedule-panel').forEach(p=>p.classList.remove('visible'));
+  document.querySelector('#panel-'+day).classList.add('visible');
+  updateProgress();
+}
+
+function toggleCheck(btn){
+  btn.classList.toggle('checked');
+  updateProgress();
+}
+
+function resetDay(){
+  document.querySelectorAll('.schedule-panel.visible .check-btn').forEach(b=>b.classList.remove('checked'));
+  updateProgress();
+}
+
+function updateProgress(){
+  let visiblePanel = document.querySelector('.schedule-panel.visible');
+  let total = visiblePanel.querySelectorAll('.check-btn').length;
+  let done = visiblePanel.querySelectorAll('.check-btn.checked').length;
+  document.getElementById('progress-text').innerText = done+' / '+total+' مهمة';
+  let percent = total? (done/total*100):0;
+  document.getElementById('progress-bar').style.width = percent+'%';
+}
+updateProgress();
+</script>
+
+</body>
+</html>
