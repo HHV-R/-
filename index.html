@@ -3,824 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>جدول طالب خامس اعدادي</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+<title>الدليل الشامل للنجاح وتطوير الذات</title>
+
 <style>
-  :root {
-    --bg: #0a0e1a;
-    --surface: #111827;
-    --surface2: #1a2235;
-    --border: #1e3a5f;
-    --gold: #f0b429;
-    --gold2: #ffd166;
-    --blue: #3b82f6;
-    --teal: #06b6d4;
-    --green: #10b981;
-    --purple: #8b5cf6;
-    --orange: #f97316;
-    --pink: #ec4899;
-    --text: #e2e8f0;
-    --muted: #64748b;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    font-family: 'Cairo', sans-serif;
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 10% 20%, rgba(240,180,41,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 30% 60%, rgba(59,130,246,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 70% 30%, rgba(6,182,212,0.2) 0%, transparent 100%),
-      radial-gradient(1px 1px at 90% 80%, rgba(139,92,246,0.2) 0%, transparent 100%),
-      radial-gradient(600px 600px at 20% 50%, rgba(59,130,246,0.04) 0%, transparent 100%),
-      radial-gradient(600px 600px at 80% 20%, rgba(240,180,41,0.04) 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .wrapper {
-    position: relative;
-    z-index: 1;
-    padding: 30px 20px;
-    max-width: 1300px;
-    margin: auto;
-  }
-
-  .header {
-    text-align: center;
-    margin-bottom: 36px;
-    animation: fadeDown 0.8s ease both;
-  }
-
-  .header .badge {
-    display: inline-block;
-    background: linear-gradient(135deg, rgba(240,180,41,0.15), rgba(240,180,41,0.05));
-    border: 1px solid rgba(240,180,41,0.4);
-    color: var(--gold);
-    padding: 6px 20px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    font-family: 'Tajawal', sans-serif;
-    margin-bottom: 16px;
-  }
-
-  .header h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--gold), var(--gold2), #fff7e0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.2;
-    margin-bottom: 10px;
-  }
-
-  .header p { color: var(--muted); font-size: 0.92rem; font-family: 'Tajawal', sans-serif; }
-
-  /* Top bar */
-  .top-bar {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 22px;
-    flex-wrap: wrap;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-
-  .progress-area { flex: 1; min-width: 200px; }
-
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: var(--muted);
-    font-family: 'Tajawal', sans-serif;
-    margin-bottom: 6px;
-  }
-
-  .progress-label strong { color: var(--gold); }
-
-  .progress-bar-wrap {
-    background: var(--surface2);
-    border-radius: 50px;
-    height: 10px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .progress-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--green), var(--teal));
-    border-radius: 50px;
-    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-    box-shadow: 0 0 10px rgba(16,185,129,0.5);
-  }
-
-  .print-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--gold), var(--orange));
-    color: #0a0e1a;
-    border: none;
-    padding: 11px 24px;
-    border-radius: 12px;
-    font-family: 'Cairo', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 20px rgba(240,180,41,0.35);
-    white-space: nowrap;
-  }
-
-  .print-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(240,180,41,0.5); }
-
-  .reset-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 11px 16px;
-    border-radius: 12px;
-    font-family: 'Cairo', sans-serif;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .reset-btn:hover { border-color: #ef4444; color: #f87171; }
-
-  /* Days nav */
-  .days-nav {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  .day-btn {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 10px 18px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-family: 'Cairo', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: all 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .day-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--gold), var(--orange));
-    opacity: 0;
-    transition: opacity 0.25s;
-  }
-
-  .day-btn span { position: relative; z-index: 1; }
-
-  .day-cnt {
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    background: rgba(16,185,129,0.25);
-    color: #34d399;
-    font-size: 0.68rem;
-    padding: 1px 5px;
-    border-radius: 50px;
-    margin-right: 3px;
-    font-weight: 700;
-  }
-
-  .day-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-  .day-btn.active { border-color: var(--gold); color: #0a0e1a; font-weight: 700; }
-  .day-btn.active::before { opacity: 1; }
-
-  /* Panels */
-  .schedule-panel { display: none; animation: fadeIn 0.4s ease both; }
-  .schedule-panel.visible { display: block; }
-
-  .day-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 18px;
-    padding: 18px 26px;
-    background: linear-gradient(135deg, var(--surface), var(--surface2));
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .day-header::after {
-    content: '';
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, var(--gold), var(--orange));
-    border-radius: 0 16px 16px 0;
-  }
-
-  .day-header .day-emoji { font-size: 2rem; }
-
-  .day-header h2 {
-    font-size: 1.5rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--gold), #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .day-header .day-sub { color: var(--muted); font-size: 0.82rem; font-family: 'Tajawal', sans-serif; margin-top: 2px; }
-
-  /* Slots */
-  .slots { display: grid; gap: 9px; }
-
-  .slot {
-    display: grid;
-    grid-template-columns: 140px 1fr auto auto;
-    align-items: center;
-    gap: 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    padding: 13px 18px;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
-    animation: slideIn 0.4s ease both;
-  }
-
-  .slot:hover { border-color: rgba(240,180,41,0.3); transform: translateX(-3px); }
-
-  .slot.done {
-    background: rgba(16,185,129,0.06);
-    border-color: rgba(16,185,129,0.3);
-    opacity: 0.72;
-  }
-
-  .slot.done .slot-label { text-decoration: line-through; color: var(--muted); }
-
-  .slot::before {
-    content: '';
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 3px;
-    border-radius: 0 13px 13px 0;
-  }
-
-  .slot.study::before { background: var(--blue); }
-  .slot.prayer::before { background: var(--green); }
-  .slot.break::before { background: var(--teal); }
-  .slot.review::before { background: var(--purple); }
-  .slot.sleep::before { background: var(--muted); }
-  .slot.free::before { background: var(--pink); }
-  .slot.meal::before { background: var(--orange); }
-
-  .slot-time {
-    font-family: 'Tajawal', sans-serif;
-    font-size: 0.8rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    white-space: nowrap;
-  }
-
-  .slot-info { display: flex; align-items: center; gap: 11px; }
-
-  .slot-dot {
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .study .slot-dot { background: var(--blue); box-shadow: 0 0 7px var(--blue); }
-  .prayer .slot-dot { background: var(--green); box-shadow: 0 0 7px var(--green); }
-  .break .slot-dot { background: var(--teal); box-shadow: 0 0 7px var(--teal); }
-  .review .slot-dot { background: var(--purple); box-shadow: 0 0 7px var(--purple); }
-  .sleep .slot-dot { background: var(--muted); }
-  .free .slot-dot { background: var(--pink); box-shadow: 0 0 7px var(--pink); }
-  .meal .slot-dot { background: var(--orange); box-shadow: 0 0 7px var(--orange); }
-
-  .slot-label { font-size: 0.9rem; font-weight: 600; color: var(--text); transition: all 0.25s; }
-
-  .slot-badge {
-    font-size: 0.68rem;
-    font-family: 'Tajawal', sans-serif;
-    padding: 3px 9px;
-    border-radius: 50px;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  .study .slot-badge { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
-  .prayer .slot-badge { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
-  .break .slot-badge { background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3); }
-  .review .slot-badge { background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
-  .sleep .slot-badge { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.3); }
-  .free .slot-badge { background: rgba(236,72,153,0.15); color: #f472b6; border: 1px solid rgba(236,72,153,0.3); }
-  .meal .slot-badge { background: rgba(249,115,22,0.15); color: #fb923c; border: 1px solid rgba(249,115,22,0.3); }
-
-  /* CHECK BUTTON */
-  .check-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid var(--border);
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    flex-shrink: 0;
-    color: transparent;
-    position: relative;
-  }
-
-  .check-btn:hover {
-    border-color: var(--green);
-    transform: scale(1.18);
-    color: rgba(16,185,129,0.4);
-    background: rgba(16,185,129,0.08);
-  }
-
-  .check-btn.checked {
-    background: linear-gradient(135deg, #059669, #10b981);
-    border-color: #10b981;
-    color: white;
-    box-shadow: 0 0 16px rgba(16,185,129,0.55);
-  }
-
-  @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.35)} 100%{transform:scale(1)} }
-  .check-btn.pop { animation: pop 0.28s ease; }
-
-  /* Stats */
-  .overview {
-    margin-top: 28px;
-    padding: 22px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    animation: fadeUp 0.6s 0.4s ease both;
-  }
-
-  .overview-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 14px;
-  }
-
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; }
-
-  .stat-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px;
-    text-align: center;
-  }
-
-  .stat-card .stat-icon { font-size: 1.3rem; margin-bottom: 6px; }
-  .stat-card .stat-num { font-size: 1.25rem; font-weight: 900; color: var(--gold); }
-  .stat-card .stat-lbl { font-size: 0.72rem; color: var(--muted); font-family: 'Tajawal', sans-serif; margin-top: 2px; }
-
-  /* Toast */
-  .toast {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: linear-gradient(135deg, #059669, #10b981);
-    color: white;
-    padding: 11px 26px;
-    border-radius: 50px;
-    font-family: 'Cairo', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 700;
-    z-index: 999;
-    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    box-shadow: 0 8px 30px rgba(16,185,129,0.4);
-    pointer-events: none;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-
-  /* Animations */
-  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-  @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
-
-  .slot:nth-child(1){animation-delay:.05s} .slot:nth-child(2){animation-delay:.1s}
-  .slot:nth-child(3){animation-delay:.15s} .slot:nth-child(4){animation-delay:.2s}
-  .slot:nth-child(5){animation-delay:.25s} .slot:nth-child(6){animation-delay:.3s}
-  .slot:nth-child(7){animation-delay:.35s} .slot:nth-child(8){animation-delay:.4s}
-  .slot:nth-child(9){animation-delay:.45s} .slot:nth-child(10){animation-delay:.5s}
-  .slot:nth-child(11){animation-delay:.55s} .slot:nth-child(12){animation-delay:.6s}
-  .slot:nth-child(13){animation-delay:.65s}
-
-  @media (max-width:600px) {
-    .slot { grid-template-columns: 1fr auto auto; gap: 8px; }
-    .slot-time { display: none; }
-    .slot-badge { display: none; }
-    .stats-grid { grid-template-columns: repeat(2,1fr); }
-    .top-bar { flex-direction: column; align-items: stretch; }
-  }
-
-  /* ======= PRINT ======= */
-  @media print {
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-
-    body { background: #fff !important; color: #111 !important; }
-    body::before { display: none; }
-
-    .wrapper { max-width: 100%; padding: 8mm 12mm; }
-
-    .print-btn, .reset-btn, .days-nav, .top-bar, .toast { display: none !important; }
-
-    .header { margin-bottom: 5mm; }
-
-    .header .badge {
-      background: #fef9e7 !important;
-      border: 1px solid #d4a017 !important;
-      color: #7d5a00 !important;
-    }
-
-    .header h1 {
-      background: none !important;
-      -webkit-text-fill-color: #111 !important;
-      color: #111 !important;
-      font-size: 20pt !important;
-    }
-
-    .header p { color: #666 !important; }
-
-    /* Show ALL days when printing */
-    .schedule-panel {
-      display: block !important;
-      margin-bottom: 7mm;
-      page-break-inside: avoid;
-    }
-
-    .day-header {
-      background: #1c2333 !important;
-      border: 1px solid #444 !important;
-      border-radius: 8px !important;
-      padding: 8px 14px !important;
-      margin-bottom: 3mm !important;
-      page-break-after: avoid;
-    }
-
-    .day-header h2 { -webkit-text-fill-color: #e8a000 !important; font-size: 14pt !important; }
-    .day-header .day-sub { color: #aaa !important; font-size: 8pt !important; }
-
-    .slots { gap: 3px !important; }
-
-    .slot {
-      background: #f9fafb !important;
-      border: 1px solid #dde !important;
-      border-radius: 6px !important;
-      padding: 7px 12px !important;
-      grid-template-columns: 110px 1fr auto auto !important;
-      gap: 8px !important;
-      animation: none !important;
-      transform: none !important;
-      page-break-inside: avoid;
-    }
-
-    .slot.done { background: #f0fdf4 !important; border-color: #a7f3d0 !important; }
-    .slot.done .slot-label { text-decoration: line-through; color: #888 !important; }
-
-    .slot::before { width: 4px !important; border-radius: 0 !important; }
-    .slot.study::before { background: #2563eb !important; }
-    .slot.prayer::before { background: #059669 !important; }
-    .slot.break::before { background: #0891b2 !important; }
-    .slot.review::before { background: #7c3aed !important; }
-    .slot.sleep::before { background: #94a3b8 !important; }
-    .slot.free::before { background: #db2777 !important; }
-    .slot.meal::before { background: #ea580c !important; }
-
-    .slot-time { color: #666 !important; font-size: 7.5pt !important; }
-    .slot-label { color: #111 !important; font-size: 8.5pt !important; font-weight: 600 !important; }
-
-    .slot-badge { font-size: 6.5pt !important; padding: 2px 7px !important; }
-    .study .slot-badge { background: #eff6ff !important; color: #1e40af !important; border: 1px solid #bfdbfe !important; }
-    .prayer .slot-badge { background: #f0fdf4 !important; color: #065f46 !important; border: 1px solid #a7f3d0 !important; }
-    .break .slot-badge { background: #ecfeff !important; color: #0e7490 !important; border: 1px solid #a5f3fc !important; }
-    .review .slot-badge { background: #faf5ff !important; color: #5b21b6 !important; border: 1px solid #ddd6fe !important; }
-    .sleep .slot-badge { background: #f8fafc !important; color: #475569 !important; border: 1px solid #cbd5e1 !important; }
-    .free .slot-badge { background: #fdf4ff !important; color: #86198f !important; border: 1px solid #f0abfc !important; }
-    .meal .slot-badge { background: #fff7ed !important; color: #9a3412 !important; border: 1px solid #fed7aa !important; }
-
-    .slot-dot { width: 7px !important; height: 7px !important; box-shadow: none !important; }
-    .study .slot-dot { background: #2563eb !important; }
-    .prayer .slot-dot { background: #059669 !important; }
-    .break .slot-dot { background: #0891b2 !important; }
-    .review .slot-dot { background: #7c3aed !important; }
-    .sleep .slot-dot { background: #94a3b8 !important; }
-    .free .slot-dot { background: #db2777 !important; }
-    .meal .slot-dot { background: #ea580c !important; }
-
-    /* Print check circles */
-    .check-btn {
-      width: 22px !important;
-      height: 22px !important;
-      border: 2px solid #bbb !important;
-      background: #fff !important;
-      color: transparent !important;
-      box-shadow: none !important;
-      font-size: 0.8rem !important;
-      border-radius: 50% !important;
-    }
-
-    .check-btn.checked {
-      background: #059669 !important;
-      border-color: #059669 !important;
-      color: white !important;
-    }
-
-    .overview {
-      background: #f8fafc !important;
-      border: 1px solid #e2e8f0 !important;
-      border-radius: 8px !important;
-      page-break-inside: avoid;
-      margin-top: 5mm !important;
-    }
-
-    .overview-title { color: #7d5a00 !important; font-size: 10pt !important; }
-
-    .stat-card { background: #fff !important; border: 1px solid #e2e8f0 !important; padding: 8px !important; }
-    .stat-card .stat-num { color: #7d5a00 !important; -webkit-text-fill-color: #7d5a00 !important; font-size: 1rem !important; }
-    .stat-card .stat-lbl { color: #64748b !important; }
-    .stat-card .stat-icon { font-size: 1rem !important; }
-  }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Tahoma, Arial, sans-serif;
+background:#0b0b0b;
+color:#fff;
+line-height:1.8;
+}
+
+.slide{
+min-height:100vh;
+padding:60px 40px;
+display:flex;
+justify-content:center;
+align-items:center;
+border-bottom:1px solid #222;
+page-break-after:always;
+}
+
+.card{
+width:100%;
+max-width:950px;
+background:#141414;
+padding:40px;
+border-radius:22px;
+box-shadow:0 0 25px rgba(0,0,0,.45);
+}
+
+h1,h2,h3{
+color:#f1c85a;
+margin-bottom:20px;
+}
+
+p{
+font-size:20px;
+margin-bottom:15px;
+}
+
+ul{
+padding-right:25px;
+}
+
+li{
+margin-bottom:12px;
+font-size:20px;
+}
+
+.small{
+font-size:15px;
+opacity:.75;
+margin-top:25px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+margin-top:20px;
+}
+
+.box{
+background:#1f1f1f;
+padding:18px;
+border-radius:14px;
+}
+
+@media(max-width:700px){
+.grid{
+grid-template-columns:1fr;
+}
+.slide{
+padding:25px;
+}
+.card{
+padding:25px;
+}
+}
 </style>
 </head>
+
 <body>
 
-<div class="wrapper">
-
-  <div class="header">
-    <div class="badge">📚 السنة الدراسية</div>
-    <h1>جدول الطالب الأسبوعي</h1>
-    <p>سادس اعدادي — منظّم ومحترف لتحقيق أفضل النتائج</p>
-  </div>
-
-  <div class="top-bar">
-    <div class="progress-area">
-      <div class="progress-label">
-        <span>إنجاز اليوم</span>
-        <strong id="progress-text">0 / 0 مهمة</strong>
-      </div>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar-fill" id="progress-bar"></div>
-      </div>
-    </div>
-    <button class="reset-btn" onclick="resetDay()">🔄 إعادة</button>
-    <button class="print-btn" onclick="window.print()">🖨️ طباعة الجدول كاملاً</button>
-  </div>
-
-  <div class="days-nav">
-    <button class="day-btn active" onclick="showDay('sun')" id="btn-sun"><span>الأحد</span><span class="day-cnt" id="cnt-sun" style="display:none"></span></button>
-    <button class="day-btn" onclick="showDay('mon')" id="btn-mon"><span>الاثنين</span><span class="day-cnt" id="cnt-mon" style="display:none"></span></button>
-    <button class="day-btn" onclick="showDay('tue')" id="btn-tue"><span>الثلاثاء</span><span class="day-cnt" id="cnt-tue" style="display:none"></span></button>
-    <button class="day-btn" onclick="showDay('wed')" id="btn-wed"><span>الأربعاء</span><span class="day-cnt" id="cnt-wed" style="display:none"></span></button>
-    <button class="day-btn" onclick="showDay('thu')" id="btn-thu"><span>الخميس</span><span class="day-cnt" id="cnt-thu" style="display:none"></span></button>
-    <button class="day-btn" onclick="showDay('fri')" id="btn-fri"><span>الجمعة</span><span class="day-cnt" id="cnt-fri" style="display:none"></span></button>
-    <button class="day-btn" onclick="showDay('sat')" id="btn-sat"><span>السبت</span><span class="day-cnt" id="cnt-sat" style="display:none"></span></button>
-  </div>
-
-  <!-- الأحد -->
-  <div class="schedule-panel visible" id="panel-sun" data-day="sun">
-    <div class="day-header"><div class="day-emoji">🌅</div><div><h2>الأحد</h2><div class="day-sub">بداية الأسبوع — رياضيات وفيزياء</div></div></div>
-    <div class="slots">
-      <div class="slot prayer"><div class="slot-time">🕌 الفجر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الفجر + مراجعة خفيفة</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 8:00 - 10:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">رياضيات — حل مسائل ومعادلات</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot break"><div class="slot-time">☕ 10:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">استراحة قصيرة</div></div><span class="slot-badge">راحة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 10:30 - 12:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">فيزياء — قوانين ونظريات</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 الظهر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الظهر + غداء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 2:00 - 4:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">حل أسئلة سابقة — رياضيات</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العصر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العصر</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 5:00 - 6:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">أحياء أو كيمياء — حفظ</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 المغرب</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة المغرب</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 7:00 - 8:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">راحة — موبايل / مسلسل</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العشاء</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العشاء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 9:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة + تحضير ليوم الاثنين</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot sleep"><div class="slot-time">🌙 11:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">نوم 😴</div></div><span class="slot-badge">نوم</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-    </div>
-  </div>
-
-  <!-- الاثنين -->
-  <div class="schedule-panel" id="panel-mon" data-day="mon">
-    <div class="day-header"><div class="day-emoji">📖</div><div><h2>الاثنين</h2><div class="day-sub">كيمياء وأحياء</div></div></div>
-    <div class="slots">
-      <div class="slot prayer"><div class="slot-time">🕌 الفجر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الفجر + مراجعة سريعة</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 8:00 - 10:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">كيمياء — تفاعلات ومعادلات</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot break"><div class="slot-time">☕ 10:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">استراحة</div></div><span class="slot-badge">راحة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 10:30 - 12:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">أحياء — خلايا وأنظمة</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 الظهر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الظهر + غداء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 2:00 - 4:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">حل أسئلة — كيمياء وأحياء</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العصر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العصر</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 5:00 - 6:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">لغة عربية أو تاريخ</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 المغرب</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة المغرب</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 7:00 - 8:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">وقت حر</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العشاء</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العشاء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 9:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة + تحضير الثلاثاء</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot sleep"><div class="slot-time">🌙 11:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">نوم 😴</div></div><span class="slot-badge">نوم</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-    </div>
-  </div>
-
-  <!-- الثلاثاء -->
-  <div class="schedule-panel" id="panel-tue" data-day="tue">
-    <div class="day-header"><div class="day-emoji">🔬</div><div><h2>الثلاثاء</h2><div class="day-sub">فيزياء وجغرافية</div></div></div>
-    <div class="slots">
-      <div class="slot prayer"><div class="slot-time">🕌 الفجر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الفجر + ورد قرآني</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 8:00 - 10:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">فيزياء — حل مسائل متقدمة</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot break"><div class="slot-time">☕ 10:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">استراحة + تمارين خفيفة</div></div><span class="slot-badge">راحة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 10:30 - 12:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">جغرافية + تاريخ</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 الظهر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الظهر + غداء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 2:00 - 4:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة شاملة لمواد الأسبوع</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العصر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العصر</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 5:00 - 6:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">رياضيات — تقوية وتثبيت</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 المغرب</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة المغرب</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 7:00 - 8:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">راحة / موبايل</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العشاء</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العشاء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 9:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة سريعة</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot sleep"><div class="slot-time">🌙 11:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">نوم 😴</div></div><span class="slot-badge">نوم</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-    </div>
-  </div>
-
-  <!-- الأربعاء -->
-  <div class="schedule-panel" id="panel-wed" data-day="wed">
-    <div class="day-header"><div class="day-emoji">✏️</div><div><h2>الأربعاء</h2><div class="day-sub">لغة عربية وإسلامية</div></div></div>
-    <div class="slots">
-      <div class="slot prayer"><div class="slot-time">🕌 الفجر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الفجر + حفظ قرآني</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 8:00 - 10:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">لغة عربية — نحو وصرف وأدب</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot break"><div class="slot-time">☕ 10:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">استراحة</div></div><span class="slot-badge">راحة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 10:30 - 12:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">تربية إسلامية + حفظ</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 الظهر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الظهر + غداء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 2:00 - 4:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">تدريب على الإنشاء والكتابة</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العصر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العصر</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 5:00 - 6:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مادة ضعيفة — تعزيز</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 المغرب</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة المغرب</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 7:00 - 8:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">وقت مع العائلة / راحة</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العشاء</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العشاء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 9:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة + تحضير</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot sleep"><div class="slot-time">🌙 11:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">نوم 😴</div></div><span class="slot-badge">نوم</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-    </div>
-  </div>
-
-  <!-- الخميس -->
-  <div class="schedule-panel" id="panel-thu" data-day="thu">
-    <div class="day-header"><div class="day-emoji">🚀</div><div><h2>الخميس</h2><div class="day-sub">مراجعة شاملة لكل المواد</div></div></div>
-    <div class="slots">
-      <div class="slot prayer"><div class="slot-time">🕌 الفجر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الفجر + دعاء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 8:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة شاملة — رياضيات وفيزياء</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot break"><div class="slot-time">☕ 10:30 - 11:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">استراحة</div></div><span class="slot-badge">راحة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 11:00 - 12:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة — كيمياء وأحياء</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 الظهر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الظهر + غداء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 2:00 - 4:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">حل نماذج امتحانية سابقة</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العصر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العصر</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 5:00 - 6:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">راحة حرة — استعداد للجمعة</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 المغرب</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة المغرب</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 7:00 - 8:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">وقت حر / عائلة</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العشاء</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العشاء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot sleep"><div class="slot-time">🌙 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">نوم مبكر استعداداً للجمعة 😴</div></div><span class="slot-badge">نوم</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-    </div>
-  </div>
-
-  <!-- الجمعة -->
-  <div class="schedule-panel" id="panel-fri" data-day="fri">
-    <div class="day-header"><div class="day-emoji">🌟</div><div><h2>الجمعة</h2><div class="day-sub">يوم الراحة والروحانية</div></div></div>
-    <div class="slots">
-      <div class="slot prayer"><div class="slot-time">🕌 الفجر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الفجر + قراءة سورة الكهف</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 8:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">راحة حرة — نوم / قراءة</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 الجمعة</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الجمعة</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot meal"><div class="slot-time">🍽️ الغداء</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">غداء مع العائلة</div></div><span class="slot-badge">وجبة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 3:00 - 5:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة خفيفة — لا ضغط</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العصر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العصر</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 5:00 - 7:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">وقت حر — رياضة / أصدقاء</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 المغرب + العشاء</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة المغرب والعشاء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 9:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">تخطيط أسبوع الدراسة القادم</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot sleep"><div class="slot-time">🌙 11:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">نوم 😴</div></div><span class="slot-badge">نوم</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-    </div>
-  </div>
-
-  <!-- السبت -->
-  <div class="schedule-panel" id="panel-sat" data-day="sat">
-    <div class="day-header"><div class="day-emoji">⚡</div><div><h2>السبت</h2><div class="day-sub">تعزيز ومادة ضعيفة</div></div></div>
-    <div class="slots">
-      <div class="slot prayer"><div class="slot-time">🕌 الفجر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الفجر + مراجعة</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 8:00 - 10:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">المادة الأصعب — تعزيز مكثف</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot break"><div class="slot-time">☕ 10:00 - 10:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">استراحة</div></div><span class="slot-badge">راحة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot study"><div class="slot-time">⏰ 10:30 - 12:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">رياضيات — تمارين متقدمة</div></div><span class="slot-badge">دراسة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 الظهر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة الظهر + غداء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 2:00 - 4:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">تصحيح الأخطاء السابقة</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العصر</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العصر</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 5:00 - 7:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">راحة تامة / رياضة / هواية</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 المغرب</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة المغرب</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot free"><div class="slot-time">⏰ 7:00 - 8:30</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">موبايل / مسلسل / عائلة</div></div><span class="slot-badge">ترفيه</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot prayer"><div class="slot-time">🕌 العشاء</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">صلاة العشاء</div></div><span class="slot-badge">عبادة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot review"><div class="slot-time">⏰ 9:00 - 10:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">مراجعة سريعة + استعداد للأحد</div></div><span class="slot-badge">مراجعة</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-      <div class="slot sleep"><div class="slot-time">🌙 11:00</div><div class="slot-info"><div class="slot-dot"></div><div class="slot-label">نوم 😴</div></div><span class="slot-badge">نوم</span><button class="check-btn" onclick="toggleCheck(this)">✓</button></div>
-    </div>
-  </div>
-
-  <!-- إحصائيات -->
-  <div class="overview">
-    <div class="overview-title">📊 ملخص الجدول الأسبوعي</div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-num">~7</div><div class="stat-lbl">ساعات دراسة يومية</div></div>
-      <div class="stat-card"><div class="stat-icon">🕌</div><div class="stat-num">5</div><div class="stat-lbl">صلوات يومية</div></div>
-      <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-num">6</div><div class="stat-lbl">مواد مغطاة</div></div>
-      <div class="stat-card"><div class="stat-icon">😴</div><div class="stat-num">7h+</div><div class="stat-lbl">نوم كافٍ</div></div>
-      <div class="stat-card"><div class="stat-icon">🎮</div><div class="stat-num">1h</div><div class="stat-lbl">ترفيه يومي</div></div>
-      <div class="stat-card"><div class="stat-icon">🌟</div><div class="stat-num">جمعة</div><div class="stat-lbl">يوم راحة كامل</div></div>
-    </div>
-  </div>
-
+<!-- Cover -->
+<section class="slide">
+<div class="card">
+<h1>الدليل الشامل للنجاح وتطوير الذات والانضباط والثراء</h1>
+<p>100 صفحة عملية للشباب والطلاب والطموحين</p>
+<p>نسخة احترافية عربية قابلة للطباعة PDF</p>
+<p class="small">إعداد: علي حازم محمد</p>
 </div>
+</section>
 
-<div class="toast" id="toast"></div>
+<!-- Example Real Slides -->
+<section class="slide">
+<div class="card">
+<h2>1. البداية من الصفر</h2>
+<ul>
+<li>لا تنتظر الظروف المثالية.</li>
+<li>ابدأ بما لديك الآن.</li>
+<li>المهارة أهم من الإمكانيات.</li>
+<li>كل تقدم صغير يصنع فرقاً كبيراً.</li>
+</ul>
+</div>
+</section>
 
+<section class="slide">
+<div class="card">
+<h2>2. قاعدة ساعة يومياً</h2>
+<p>إذا استثمرت ساعة يومياً في التعلم لمدة سنة، ستتغير حياتك.</p>
+<div class="grid">
+<div class="box">30 ساعة بالشهر</div>
+<div class="box">365 ساعة بالسنة</div>
+<div class="box">خبرة أعلى من أغلب الناس</div>
+<div class="box">نتائج تراكمية ضخمة</div>
+</div>
+</div>
+</section>
+
+<section class="slide">
+<div class="card">
+<h2>3. كيف تتخلص من التسويف</h2>
+<ul>
+<li>ابدأ 5 دقائق فقط.</li>
+<li>أغلق الهاتف أثناء العمل.</li>
+<li>حدد مهمة واحدة.</li>
+<li>كافئ نفسك بعد الإنجاز.</li>
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div class="card">
+<h2>4. عقلية المال</h2>
+<ul>
+<li>ادخر أولاً ثم اصرف.</li>
+<li>تعلم مهارة قابلة للبيع.</li>
+<li>لا تشترِ لإبهار الناس.</li>
+<li>استثمر بنفسك قبل أي شيء.</li>
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div class="card">
+<h2>5. النجاح الدراسي</h2>
+<ul>
+<li>ذاكر بفترات 45 دقيقة.</li>
+<li>استخدم التكرار المتباعد.</li>
+<li>راجع قبل النوم.</li>
+<li>اكتب بيدك أهم النقاط.</li>
+</ul>
+</div>
+</section>
+
+<!-- Auto Generate Remaining Slides -->
 <script>
-  function showDay(day) {
-    document.querySelectorAll('.schedule-panel').forEach(p => p.classList.remove('visible'));
-    document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('panel-' + day).classList.add('visible');
-    document.getElementById('btn-' + day).classList.add('active');
-    updateProgress();
-  }
+const topics = [
+"بناء الثقة بالنفس",
+"قوة لغة الجسد",
+"خطة 30 يوم للتغيير",
+"تنظيم النوم والطاقة",
+"كيف تصنع عادة جديدة",
+"التفكير الاستراتيجي",
+"إدارة الوقت باحتراف",
+"مهارات التواصل",
+"أخطاء تدمر مستقبلك",
+"التخلص من المقارنات",
+"كيف تصبح منضبطاً",
+"رفع التركيز العميق",
+"قوة القراءة اليومية",
+"الاستثمار في نفسك",
+"كيف تبني دخل إضافي",
+"التعامل مع الفشل",
+"الهدوء النفسي",
+"كيف تصبح قائداً",
+"النجاح بدون واسطة",
+"التعلم الذاتي السريع"
+];
 
-  function toggleCheck(btn) {
-    btn.classList.toggle('checked');
-    btn.classList.add('pop');
-    setTimeout(() => btn.classList.remove('pop'), 300);
-    btn.closest('.slot').classList.toggle('done', btn.classList.contains('checked'));
-    updateProgress();
-    updateCounter(btn.closest('.schedule-panel'));
-    if (btn.classList.contains('checked')) showToast('✅ أحسنت! مهمة مكتملة');
-  }
+for(let i=6;i<=99;i++){
+let t = topics[i % topics.length];
 
-  function updateProgress() {
-    const panel = document.querySelector('.schedule-panel.visible');
-    if (!panel) return;
-    const all = panel.querySelectorAll('.check-btn').length;
-    const done = panel.querySelectorAll('.check-btn.checked').length;
-    const pct = all ? Math.round(done / all * 100) : 0;
-    document.getElementById('progress-bar').style.width = pct + '%';
-    document.getElementById('progress-text').textContent = done + ' / ' + all + ' مهمة';
-    if (pct === 100 && done > 0) showToast('🎉 أنجزت كل مهام اليوم! عظيم!');
-  }
+document.write(`
+<section class="slide">
+<div class="card">
+<h2>${i}. ${t}</h2>
+<ul>
+<li>طبّق خطوة صغيرة اليوم.</li>
+<li>استمر يومياً بدون انقطاع.</li>
+<li>قلل المشتتات وركز.</li>
+<li>سجّل تقدمك أسبوعياً.</li>
+</ul>
+</div>
+</section>
+`);
+}
+</script>
 
-  function updateCounter(panel) {
-    if (!panel) return;
-    const day = panel.dataset.day;
-    const done = panel.querySelectorAll('.check-btn.checked').length;
-    const cnt = document.getElementById('cnt-' + day);
-    cnt.style.display = done > 0 ? 'inline-block' : 'none';
-    cnt.textContent = '✓' + done;
-  }
+<!-- Last Page -->
+<section class="slide">
+<div class="card">
+<h1>ابدأ الآن</h1>
+<p>نسختك الأفضل تبدأ بقرار اليوم.</p>
+<p class="small">تم إعداد هذا الدليل بواسطة علي حازم محمد</p>
+</div>
+</section>
 
-  function resetDay() {
-    const panel = document.querySelector('.schedule-panel.visible');
-    if (!panel) return;
-    panel.querySelectorAll('.check-btn').forEach(b => {
-      b.classList.remove('checked');
-      b.closest('.slot').classList.remove('done');
-    });
-    updateProgress();
-    updateCounter(panel);
-    showToast('🔄 تمت إعادة تعيين اليوم');
-  }
-
-  let tt;
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTime
+</body>
+</html>
